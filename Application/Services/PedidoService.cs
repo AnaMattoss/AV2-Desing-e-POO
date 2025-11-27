@@ -13,26 +13,28 @@ public class PedidoService : IPedidoService
     {
         _carrinho = carrinho;
 
-        //teste
-        _clientes.Add(new Cliente("Lucas", "lucas@gmail.com"));
+        // Cliente de teste
+        _clientes.Add(new Cliente(1, "Lucas", "lucas@gmail.com"));
     }
 
     public Pedido Finalizar(int clienteId, string tipoPagamento)
     {
-        var cliente = _clientes.First(c => c.Id == clienteId);
+        var cliente = _clientes.FirstOrDefault(c => c.Id == clienteId);
+        if (cliente == null)
+            throw new ArgumentException("Cliente não encontrado.");
+            
         var carrinho = _carrinho.ObterCarrinho();
+        if (!carrinho.Itens.Any())
+            throw new InvalidOperationException("Carrinho vazio.");
 
         Pagamento pagamento = tipoPagamento.ToLower() switch
         {
             "pix" => new PagamentoPix(),
             "cartao" => new PagamentoCartao(),
-            _ => throw new Exception("Tipo de pagamento inv�lido")
+            _ => throw new ArgumentException("Tipo de pagamento inválido")
         };
 
-        var pedido = new Pedido(cliente, carrinho, pagamento);
-
-        pedido.GetType().GetProperty("Id")!.SetValue(pedido, _id++);
-
+        var pedido = new Pedido(_id++, cliente, carrinho, pagamento);
         return pedido;
     }
 }

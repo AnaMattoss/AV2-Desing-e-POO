@@ -10,10 +10,14 @@ public class ProdutoService : IProdutoService
 
     public Produto Criar(string nome, decimal preco, int estoque)
     {
-        var produto = new Produto(nome, preco, estoque);
-        produto.GetType().GetProperty("Id")!.SetValue(produto, _id++);
+        var produto = new Produto(_id++, nome, preco, estoque);
         _produtos.Add(produto);
         return produto;
+    }
+    
+    public Produto? ObterPorId(int id)
+    {
+        return _produtos.FirstOrDefault(p => p.Id == id);
     }
 
     public List<Produto> Listar() => _produtos;

@@ -8,14 +8,15 @@ public class Pedido
     public Pagamento Pagamento { get; private set; }
     public decimal TotalFinal { get; private set; }
 
-    public Pedido(Cliente cliente, Carrinho carrinho, Pagamento pagamento)
+    public Pedido(int id, Cliente cliente, Carrinho carrinho, Pagamento pagamento)
     {
+        Id = id;
         Cliente = cliente;
         Carrinho = carrinho;
         Pagamento = pagamento;
 
         TotalFinal = carrinho.Total();
-        pagamento.Valor = TotalFinal;
+        pagamento.DefinirValor(TotalFinal);
 
         pagamento.Processar();
     }

@@ -7,8 +7,9 @@ public class Produto
     public decimal Preco { get; private set; }
     public int Estoque { get; private set; }
 
-    public Produto(string nome, decimal preco, int estoque)
+    public Produto(int id, string nome, decimal preco, int estoque)
     {
+        Id = id;
         Nome = nome;
         Preco = preco;
         Estoque = estoque;
@@ -17,7 +18,7 @@ public class Produto
     public void BaixarEstoque(int qtd)
     {
         if (qtd <= 0)
-            throw new ArgumentException("Quantidade inválida.");
+            throw new ArgumentException("Quantidade invï¿½lida.");
 
         if (qtd > Estoque)
             throw new InvalidOperationException("Estoque insuficiente.");

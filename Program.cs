@@ -1,10 +1,13 @@
+using PerfumeStore.Application.Services;
+using PerfumeStore.Domain.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//injeta serviços
+//injeta serviï¿½os
 builder.Services.AddSingleton<IProdutoService, ProdutoService>();
 builder.Services.AddSingleton<ICarrinhoService, CarrinhoService>();
 builder.Services.AddSingleton<IPedidoService, PedidoService>();

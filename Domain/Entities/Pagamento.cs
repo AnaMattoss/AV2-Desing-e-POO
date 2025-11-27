@@ -2,7 +2,13 @@ namespace PerfumeStore.Domain.Entities;
 
 public abstract class Pagamento
 {
-    public decimal Valor { get; protected set; }
+    public decimal Valor { get; private set; }
+    
+    public void DefinirValor(decimal valor)
+    {
+        Valor = valor;
+    }
+    
     public abstract bool Processar();
 }
 

@@ -18,8 +18,15 @@ public class CarrinhoController : ControllerBase
     [HttpPost("adicionar")]
     public IActionResult Adicionar(ItemCarrinhoDTO dto)
     {
-        _service.AdicionarItem(dto.ProdutoId, dto.Quantidade);
-        return Ok("Item adicionado.");
+        try
+        {
+            _service.AdicionarItem(dto.ProdutoId, dto.Quantidade);
+            return Ok("Item adicionado.");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet]

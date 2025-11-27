@@ -18,7 +18,14 @@ public class PedidoController : ControllerBase
     [HttpPost("finalizar")]
     public IActionResult Finalizar(PedidoDTO dto)
     {
-        var pedido = _service.Finalizar(dto.ClienteId, dto.TipoPagamento);
-        return Ok(pedido);
+        try
+        {
+            var pedido = _service.Finalizar(dto.ClienteId, dto.TipoPagamento);
+            return Ok(pedido);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

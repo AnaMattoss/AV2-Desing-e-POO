@@ -6,8 +6,9 @@ public class Cliente
     public string Nome { get; private set; }
     public string Email { get; private set; }
 
-    public Cliente(string nome, string email)
+    public Cliente(int id, string nome, string email)
     {
+        Id = id;
         Nome = nome;
         Email = email;
     }

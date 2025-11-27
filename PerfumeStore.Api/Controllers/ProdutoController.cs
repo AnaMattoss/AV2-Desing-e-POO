@@ -18,8 +18,15 @@ public class ProdutoController : ControllerBase
     [HttpPost]
     public IActionResult Criar(ProdutoDTO dto)
     {
-        var produto = _service.Criar(dto.Nome, dto.Preco, dto.Estoque);
-        return Ok(produto);
+        try
+        {
+            var produto = _service.Criar(dto.Nome, dto.Preco, dto.Estoque);
+            return Ok(produto);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpGet]

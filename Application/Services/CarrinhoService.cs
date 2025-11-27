@@ -15,7 +15,10 @@ public class CarrinhoService : ICarrinhoService
 
     public void AdicionarItem(int produtoId, int qtd)
     {
-        var produto = _produtoService.Listar().First(x => x.Id == produtoId);
+        var produto = _produtoService.ObterPorId(produtoId);
+        if (produto == null)
+            throw new ArgumentException("Produto não encontrado.");
+            
         _carrinho.AdicionarItem(produto, qtd);
     }
 
