@@ -2,14 +2,20 @@ namespace PerfumeStore.Domain.Entities;
 
 public class Carrinho
 {
-    public List<ItemCarrinho> Itens { get; private set; } = new();
+    private readonly List<ItemCarrinho> _itens = new();
+    public IReadOnlyList<ItemCarrinho> Itens => _itens.AsReadOnly();
 
     public void AdicionarItem(Produto produto, int qtd)
     {
         produto.BaixarEstoque(qtd);
-        Itens.Add(new ItemCarrinho(produto, qtd));
+        _itens.Add(new ItemCarrinho(produto, qtd));
     }
 
     public decimal Total()
-        => Itens.Sum(i => i.Subtotal());
+        => _itens.Sum(i => i.Subtotal());
+        
+    internal void LimparItens()
+    {
+        _itens.Clear();
+    }
 }

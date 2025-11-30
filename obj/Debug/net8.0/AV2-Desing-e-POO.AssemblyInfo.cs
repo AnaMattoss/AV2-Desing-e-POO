@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AV2-Desing-e-POO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91993eef668a6d91fd21f369d118c2fd0b907f4a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+917349449455523afbf2c7cf4acb02ed12307e77")]
 [assembly: System.Reflection.AssemblyProductAttribute("AV2-Desing-e-POO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AV2-Desing-e-POO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

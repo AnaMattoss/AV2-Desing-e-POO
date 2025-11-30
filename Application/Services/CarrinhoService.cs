@@ -23,4 +23,9 @@ public class CarrinhoService : ICarrinhoService
     }
 
     public Carrinho ObterCarrinho() => _carrinho;
+    
+    public void LimparCarrinho()
+    {
+        _carrinho.LimparItens();
+    }
 }

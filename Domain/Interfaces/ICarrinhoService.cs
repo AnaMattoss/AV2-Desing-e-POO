@@ -6,4 +6,5 @@ public interface ICarrinhoService
 {
     void AdicionarItem(int produtoId, int quantidade);
     Carrinho ObterCarrinho();
+    void LimparCarrinho();
 }

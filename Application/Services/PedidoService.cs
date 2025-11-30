@@ -5,25 +5,23 @@ namespace PerfumeStore.Application.Services;
 
 public class PedidoService : IPedidoService
 {
-    private readonly ICarrinhoService _carrinho;
-    private readonly List<Cliente> _clientes = new();
+    private readonly ICarrinhoService _carrinhoService;
+    private readonly IClienteService _clienteService;
     private int _id = 1;
 
-    public PedidoService(ICarrinhoService carrinho)
+    public PedidoService(ICarrinhoService carrinhoService, IClienteService clienteService)
     {
-        _carrinho = carrinho;
-
-        // Cliente de teste
-        _clientes.Add(new Cliente(1, "Lucas", "lucas@gmail.com"));
+        _carrinhoService = carrinhoService;
+        _clienteService = clienteService;
     }
 
     public Pedido Finalizar(int clienteId, string tipoPagamento)
     {
-        var cliente = _clientes.FirstOrDefault(c => c.Id == clienteId);
+        var cliente = _clienteService.ObterPorId(clienteId);
         if (cliente == null)
             throw new ArgumentException("Cliente não encontrado.");
             
-        var carrinho = _carrinho.ObterCarrinho();
+        var carrinho = _carrinhoService.ObterCarrinho();
         if (!carrinho.Itens.Any())
             throw new InvalidOperationException("Carrinho vazio.");
 
@@ -35,6 +33,7 @@ public class PedidoService : IPedidoService
         };
 
         var pedido = new Pedido(_id++, cliente, carrinho, pagamento);
+        _carrinhoService.LimparCarrinho();
         return pedido;
     }
 }

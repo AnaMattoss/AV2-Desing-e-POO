@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 //injeta servi�os
 builder.Services.AddSingleton<IProdutoService, ProdutoService>();
 builder.Services.AddSingleton<ICarrinhoService, CarrinhoService>();
+builder.Services.AddSingleton<IClienteService, ClienteService>();
 builder.Services.AddSingleton<IPedidoService, PedidoService>();
 
 var app = builder.Build();
